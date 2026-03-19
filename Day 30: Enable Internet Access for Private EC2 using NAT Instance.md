@@ -39,27 +39,33 @@ Each EC2 instance performs source/destination checks by default. This means that
 <img width="1512" height="799" alt="dest_check" src="https://github.com/user-attachments/assets/22fe5359-cb06-4a29-a0ea-26eb97bc6830" />
 
 
-*** Configured NAT instance***
+**Configured NAT instance**
 Connect to your instance and setup with the next lines 
 
 ```bash
 sudo sysctl net.ipv4.ip_forward   ## tells the Linux kernel whether it is allowed to forward packets between network interfaces.
-## output
+```
+# output
 net.ipv4.ip_forward = 0   NAT will NOT work
 
-## Enableing NAT forwarding
+# Enableing NAT forwarding
+```bash
 sudo sysctl -w net.ipv4.ip_forward=1
-## output
-net.ipv4.ip_forward = 1   NAT CAN work
 ```
-iptables entry
+# output
+net.ipv4.ip_forward = 1   NAT CAN work
+
+# iptables entry
 ```bash
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 ```
-installed the iptables service
-
+# installed the iptables service
 ```bash
 sudo yum install -y iptables-services
+```
+# saved the rule
+```bash
+sudo service iptables save 
 ```
 
 *** Set up private and public routers  ***
