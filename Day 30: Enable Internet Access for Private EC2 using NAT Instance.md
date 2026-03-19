@@ -23,9 +23,9 @@ choose Amazon Linux 2 AMI in marketplace and deploy the instance with t3.micro
 be sure security group added to NAT instance have: 
 
 >> Inbound rules
- > 22  Source 0.0.0.0/0
- > HTTP Source Private Subnet CIDR 
- > HTTPS Source Private Subnet CIDR
+ * 22  Source 0.0.0.0/0
+ * HTTP Source Private Subnet CIDR 
+ * HTTPS Source Private Subnet CIDR
 
 >> Outbound rules 
  > All trafic Source 0.0.0.0/0
