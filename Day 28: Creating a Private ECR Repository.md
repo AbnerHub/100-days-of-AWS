@@ -15,7 +15,7 @@ Create a private ECR repository named *devops-ecr*. There is a Dockerfile under 
 6. Encryptation config
    - AES-256
 
-<img width="1682" height="820" alt="repo" src="https://github.com/user-attachments/assets/80952ced-102a-4724-967e-889db54b6e9b" />
+<img width="882" height="620" alt="repo" src="https://github.com/user-attachments/assets/80952ced-102a-4724-967e-889db54b6e9b" />
 
 ## Build docker image with dockerfile 
 
@@ -25,7 +25,7 @@ On your client, naviate to *pyapp* directory and build your image with:
 docker build -t python-image .
 ```
 
-<img width="987" height="663" alt="image" src="https://github.com/user-attachments/assets/475ee3d3-5d11-4d29-a4ff-530fd3f8977d" />
+<img width="687" height="363" alt="image" src="https://github.com/user-attachments/assets/475ee3d3-5d11-4d29-a4ff-530fd3f8977d" />
 
 **Authenticate your Docker client to the Amazon ECR**
 ```bash
