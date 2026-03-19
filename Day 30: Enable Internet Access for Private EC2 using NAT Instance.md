@@ -28,7 +28,7 @@ be sure security group added to NAT instance have:
  * HTTPS Source Private Subnet CIDR
 
 >> Outbound rules 
- > All trafic Source 0.0.0.0/0
+ * All trafic Source 0.0.0.0/0
 
 Note: When you setup inbut rule allowing just private rubnet CIDR connection you are closing all doors, creating a Zero trust implementation. 
 
