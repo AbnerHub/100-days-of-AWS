@@ -42,18 +42,35 @@ Each EC2 instance performs source/destination checks by default. This means that
 *** Configured NAT instance***
 Connect to your instance and setup with the next lines 
 
-<img width="837" height="518" alt="nat" src="https://github.com/user-attachments/assets/a70f5de7-5d2e-4ede-9f61-5c872732659c" />
+```bash
+sudo sysctl net.ipv4.ip_forward   ## tells the Linux kernel whether it is allowed to forward packets between network interfaces.
+## output
+net.ipv4.ip_forward = 0   NAT will NOT work
 
+## Enableing NAT forwarding
+sudo sysctl -w net.ipv4.ip_forward=1
+## output
+net.ipv4.ip_forward = 1   NAT CAN work
+```
+iptables entry
+```bash
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+installed the iptables service
+
+```bash
+sudo yum install -y iptables-services
+```
 
 *** Set up private and public routers  ***
 
 >> Public router:
-   *Edit routes, adding internet gateway with 0.0.0.0/0 destination.
+   * Edit routes, adding internet gateway with 0.0.0.0/0 destination.
 <img width="1838" height="883" alt="pub_rt" src="https://github.com/user-attachments/assets/ca78f838-8aa0-439f-aebb-19c9959d21f7" />
 
 
 >> Private router:
-   *Edit routes, adding NAT instance with 0.0.0.0/0 destination.
+   * Edit routes, adding NAT instance with 0.0.0.0/0 destination.
  
 <img width="1866" height="889" alt="priv_rt" src="https://github.com/user-attachments/assets/e2d4a6e1-b036-4360-bf4f-f691eb3a25fc" />
 
