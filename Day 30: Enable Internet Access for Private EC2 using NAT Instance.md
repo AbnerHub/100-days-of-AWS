@@ -10,7 +10,7 @@ There is the architecture where just NAT instance has internnet access while pri
 
 ## Create a public subnet
 
-note: I created the public subnet in the same availability zone in order to avoid traffic data transfer purchase betwen availability zone, keeping NAT and private instance into the same zone (us-east1-a)  
+**note:** I created the public subnet in the same availability zone in order to avoid traffic data transfer purchase betwen availability zone, keeping NAT and private instance into the same zone (us-east1-a)  
 
 <img width="1779" height="854" alt="vpc" src="https://github.com/user-attachments/assets/b73113e7-a285-4e5c-ad8b-d43bc6c1c84d" />
  
@@ -23,14 +23,14 @@ choose Amazon Linux 2 AMI in marketplace and deploy the instance with t3.micro
 be sure security group added to NAT instance have: 
 
 >> Inbound rules
- * Port:22  -- Source: 0.0.0.0/0
- * Port:HTTP -- Source: Private Subnet CIDR 
- * Port:HTTPS -- Source: Private Subnet CIDR
+   - Choose **Add rule**. Choose **HTTP** for Type and enter the IP address range of **your private subnet** for **Source**.
+   - Choose **Add rule**. Choose **HTTPS** for Type and enter the IP address range of **your private subnet** for **Source**.
+   - Choose **Add rule**. Choose **SSH** for Type and enter the IP address range of **your network** for **Source**.
 
 >> Outbound rules 
  * All trafic Source 0.0.0.0/0
 
-**Note** When you setup inbut rule allowing just private rubnet CIDR connection you are closing all doors, creating a Zero trust implementation. 
+**Note:** When you setup inbut rule allowing just private rubnet CIDR connection you are closing all doors, creating a Zero trust implementation. 
 
 ## Disable source/destination checks
 
