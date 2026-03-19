@@ -48,12 +48,12 @@ Connect to your instance and setup with the next lines
 *** Set up private and public routers  ***
 
 >> Public router:
-   Edit routes, adding internet gateway with 0.0.0.0/0 destination.
+   *Edit routes, adding internet gateway with 0.0.0.0/0 destination.
 <img width="1838" height="883" alt="pub_rt" src="https://github.com/user-attachments/assets/ca78f838-8aa0-439f-aebb-19c9959d21f7" />
 
 
 >> Private router:
-   Edit routes, adding NAT instance with 0.0.0.0/0 destination.
+   *Edit routes, adding NAT instance with 0.0.0.0/0 destination.
  
 <img width="1866" height="889" alt="priv_rt" src="https://github.com/user-attachments/assets/e2d4a6e1-b036-4360-bf4f-f691eb3a25fc" />
 
