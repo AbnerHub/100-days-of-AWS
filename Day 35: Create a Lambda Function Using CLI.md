@@ -1,4 +1,4 @@
-# Day 35: Create a Lambd function using CLI 
+# Day 35: Create a Lambda function using CLI 
 
 ## 📌 Overview
 The Nautilus DevOps team continues to explore serverless architecture by setting up another Lambda function. 
