@@ -31,25 +31,24 @@ def lambda_handler(event, context):
 
 3. There is a role that we´ll use called **lambda_execution_role**, we need to know what is its ARN string to be used in the next step.
    To discover it, we use the next command
-   ```
-   aws iam get-role --role-name lambda_execution_role --query 'Role.Arn' --output text
+    ```
+    aws iam get-role --role-name lambda_execution_role --query 'Role.Arn' --output text
    #Output
    #arn:aws:iam::230270923096:role/lambda_execution_role
    ```
 
-
 4. Create the lambda function, using .zip. IAM role and python script created in the previous steps
 
-```
-aws lambda create-function --function-name nautilus-lambda-cli \
---zip-file fileb://function.zip --handler lambda_function.lambda_handler --runtime python3.10.17 \
---role arn:aws:iam::230270923096:role/lambda_execution_role 
-```
+    ```
+    aws lambda create-function --function-name nautilus-lambda-cli \
+    --zip-file fileb://function.zip --handler lambda_function.lambda_handler --runtime python3.10.17 \
+    --role arn:aws:iam::230270923096:role/lambda_execution_role 
+    ```
 5. To verify the output
-   ```
-   # Invoke the function
-   aws lambda invoke --function-name nautilus-lambda-cli output.json
+    ```
+    # Invoke the function
+    aws lambda invoke --function-name nautilus-lambda-cli output.json
 
-   #Read the result (on Mac/Linux)
-   cat output.json
- ```
+    #Read the result (on Mac/Linux)
+    cat output.json
+    ```
