@@ -49,11 +49,30 @@ The Nautilus DevOps team needs a new private RDS instance for their application.
     > outbound rules
     - all traffic source 0.0.0.0/0
 2) Set up RDS sg created before. adding a new inbound rule
+   > inbound rules
    - MYSQL/Aurora port  3306 **Source** ec2-instance-sg
      
-## Connect to ec2 instance from aws-client 
+## Connect to ec2 instance from aws-client
+1) on aws-client, create new ssh keys that will be used to connect with ec2 instance
+   ```
+   ssh-keygen -t rsa 
+   ```
+2) Go to .ssh directory and copy the id_rsa.pub file 
+   ```
+   cat /root/.ssh/id_rsa.pub
+   ```
+   
 ## Adjust index.php file
+```
+<?php
+$dbname = 'nautilus_db';
+$dbuser = 'nautilus_admin';
+$dbpass = 'nautilus-rds123';
+$dbhost = 'nautilus-rds.cedrpvyk0hwu.us-east-1.rds.amazonaws.com';
+
+```
+
 ## Verify connection 
 
-
+<img width="585" height="55" alt="success" src="https://github.com/user-attachments/assets/18867092-cae0-4420-902a-3eaa1a8e8f9e" />
 
