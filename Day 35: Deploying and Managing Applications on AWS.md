@@ -57,20 +57,50 @@ The Nautilus DevOps team needs a new private RDS instance for their application.
    ```
    ssh-keygen -t rsa 
    ```
-2) Go to .ssh directory and copy the id_rsa.pub file 
+2) Go to /root/.ssh directory and copy the id_rsa.pub file 
    ```
    cat /root/.ssh/id_rsa.pub
    ```
+3) Access to AWS EC2 instance and connect trought session manager. change to root user
+```
+sudo su ~
+```
+4) Add the id_rsa.pub content copied in step 2
+   ```
+   nano /root/.ssh/autohorized_keys
+   ```
+5) Access to EC2 instance from aws-cli client
+   ```
+   ssh -i id_rsa root@public-ec2-ip
+   ```
+   
    
 ## Adjust index.php file
-```
-<?php
-$dbname = 'nautilus_db';
-$dbuser = 'nautilus_admin';
-$dbpass = 'nautilus-rds123';
-$dbhost = 'nautilus-rds.cedrpvyk0hwu.us-east-1.rds.amazonaws.com';
+
+1) copy index.php file from aws-client to var/www/html directory on ec2 instance
+
+   ```
+   scp -i /root/.ssh/id_rsa /root/index.php root@public-ec2-ip:/var/www/html 
+   ```
+
+2) Modify index.php file
+   ```
+   nano /var/www/html/index.php
+   ```
 
 ```
+<?php
+$dbname = 'nautilus_db'; #Datababase´s name
+$dbuser = 'nautilus_admin'; #User Admin 
+$dbpass = 'nautilus-rds123'; #Password´s database from RDS instance
+$dbhost = 'nautilus-rds.cedrpvyk0hwu.us-east-1.rds.amazonaws.com'; #Endopoint of your RDS instance
+
+```
+
+3) Remove index.html file created by default with apache2 istalation
+    ```
+    rm -r /var/www/html/index.html
+    ```
 
 ## Verify connection 
 
