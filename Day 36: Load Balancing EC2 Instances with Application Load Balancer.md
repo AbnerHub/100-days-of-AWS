@@ -30,11 +30,20 @@ The ALB should route traffic on port `80` to port `80`of the `nautilus-ec2` inst
 Make appropriate changes in the ``default`` security group attached to the ALB if necessary. Eventually, the Nginx server running under ``nautilus-ec2`` 
 instance must be accessible using the ALB DNS.
 
-## 🚀 Create a instance sg
+## 🚀 Create an instance security group
+1)  Create the `nautilus-sg`
+   
+   - Add `http` inbound rule port `80`
+   - Source `default` seurity group
 
 <img width="1520" height="697" alt="image" src="https://github.com/user-attachments/assets/e2a14a30-e04e-4f95-83b7-c0fa3e29e5ef" />
 
 ## Create an EC2 instance
+
+1) Create a new EC2 instance choose
+
+   - `Ubuntu` as operating system  
+   -   
 
 <img width="975" height="656" alt="image" src="https://github.com/user-attachments/assets/abf65f99-9558-4078-a446-9669e4bb6324" />
 
