@@ -43,11 +43,13 @@ instance must be accessible using the ALB DNS.
 1) Create a new EC2 instance choose
 
    - `Ubuntu` as operating system  
-   -   
+   - `default` VPC
+   - In firewall section, choose `nautilus-sg`   
 
 <img width="975" height="656" alt="image" src="https://github.com/user-attachments/assets/abf65f99-9558-4078-a446-9669e4bb6324" />
 
-
+2) To create the script and install and start nginx, go to advance option and write the next script:
+   
 <img width="1500" height="449" alt="image" src="https://github.com/user-attachments/assets/49046dfc-0ccf-40a4-aec2-d585512cc79b" />
 
 
@@ -82,20 +84,53 @@ sudo systemctl enable nginx
 
 ## Set up an Application Load Balancer
 
+1) Go to Load Balancer service and choose aplication load balancer then, choose:
+
+   - internet-facing
+   - IPV4
+        
+
 <img width="1060" height="578" alt="image" src="https://github.com/user-attachments/assets/34b3759e-f675-45a8-a3db-ddc5b9f779ae" />
 
+2) On Network Configuration
+
+   - `default` VPC
+   - Choose 2 subnets, it´s important to choose the same `subnet` where `nautilus-ec2` instance is.
+  
+ 3) Choose the `default` security group
+    
 <img width="1329" height="634" alt="image" src="https://github.com/user-attachments/assets/1418653d-af36-49de-ae4e-be40f33b3b9e" />
 
+4) Listeners and routing
+
+   - Protocol `80`
+   - Routing Actions forward to target groups
+   - target group `nautilus-tg`
+     
 <img width="1333" height="618" alt="image" src="https://github.com/user-attachments/assets/d255170d-8d94-411a-9821-c40a09f92c5f" />
 
 
 ## Security group adjustments
 
+1) Modify the `default` security group adding and inbound rule
+
+   - HTTP port `80`
+   - Source 0.0.0.0/0
+    
+
 <img width="1608" height="478" alt="image" src="https://github.com/user-attachments/assets/f367c1a1-581e-4327-b400-fdc7588a0526" />
 
 
+## 🛠 troubleshooting
+
+I was getting a `503` error, the probles was that I have deployed and Amazon linux instance insted of a Ubunut 
+so, when I tried to deploy the Script, it was not worked I needed to access with SSH to the instance and install nginx manually 
+`using` yum insted of `apt`
 
 <img width="1417" height="399" alt="image" src="https://github.com/user-attachments/assets/dd86a184-18c1-4330-bea1-8a906707b524" />
+
+
+Oce installed nginx the connection was successfully
 
 <img width="1110" height="297" alt="image" src="https://github.com/user-attachments/assets/45d36c0a-d5c9-4796-bbe8-c480e24b168b" />
 
