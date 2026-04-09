@@ -84,3 +84,10 @@ sudo systemctl enable nginx
 
 <img width="1608" height="478" alt="image" src="https://github.com/user-attachments/assets/f367c1a1-581e-4327-b400-fdc7588a0526" />
 
+
+
+<img width="1417" height="399" alt="image" src="https://github.com/user-attachments/assets/dd86a184-18c1-4330-bea1-8a906707b524" />
+
+<img width="1110" height="297" alt="image" src="https://github.com/user-attachments/assets/45d36c0a-d5c9-4796-bbe8-c480e24b168b" />
+
+
