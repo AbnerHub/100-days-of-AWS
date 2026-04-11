@@ -16,7 +16,7 @@ Task:
 
 3) Create a Private S3 Bucket:
 
-- Name the bucket `nautilus-s3-821328497772.`
+- Name the bucket `nautilus-s3-821328497772`.
 - Ensure the bucket is private.
 
 4) Create an IAM Policy and Role:
@@ -32,18 +32,29 @@ Task:
 
 ## Setup SSH Keys
 
+1) Connect to `aws-client` and create new ssh keys. 
+
 ```
 ssh-keygen -t rsa
 ```
+
+2) Copy `.pub` fyle content created.
+
 ```
 cat /root/.ssh/id_rsa.pub
 ```
+
+3) Access to `nautilus-ec2` instance through session manager and change privileges to root.
+
+4) Paste `.pub` key on authorized_keys 
 
 ```
 sudo su ~
 vi /root/.ssh/authorized_keys
 ```
 
+4) On `aws-client` connect to `nautilus-ec2` instance with ssh.
+   
 ```
 ssh -i id_rsa root@public-ec2-ip 
 ```
@@ -51,30 +62,54 @@ ssh -i id_rsa root@public-ec2-ip
 
 ## Create a Private S3 Bucket
 
-<img width="1280" height="629" alt="image" src="https://github.com/user-attachments/assets/a6ab2370-58c7-4fbb-b9f4-ea587dac109c" />
+1) Access to S3 Serice and create a new S3 bucket:
+   - General purpose
+   - Name: `nautilus-s3-821328497772`
 
-<img width="1496" height="572" alt="image" src="https://github.com/user-attachments/assets/1e89daee-0142-4ac8-aef7-f0a7afac9513" />
+
+<img width="1000" height="629" alt="image" src="https://github.com/user-attachments/assets/a6ab2370-58c7-4fbb-b9f4-ea587dac109c" />
+
+
+2) We need a private bucket, mark `block all public access` in order to create a private one.
+
+   
+<img width="1000" height="572" alt="image" src="https://github.com/user-attachments/assets/1e89daee-0142-4ac8-aef7-f0a7afac9513" />
+
 
 ## Create an IAM Policy and Role
 
-<img width="1244" height="673" alt="image" src="https://github.com/user-attachments/assets/a248f3a7-31e7-4a83-a08c-03b209519b87" />
+1) Go to IAM service, then create IAM policy and create a new one.
+   
+   - Choose S3 service.
+   - Add `s3:PutObject`, `s3:ListBucket` and `s3:GetObject` policies.
+   - Choose `nautilus-s3-821328497772` bucket as resource.
+
+<img width="1000" height="673" alt="image" src="https://github.com/user-attachments/assets/a248f3a7-31e7-4a83-a08c-03b209519b87" />
+
 
 ## EC2 Instance Setup
 
-<img width="1522" height="340" alt="image" src="https://github.com/user-attachments/assets/fef1cb2d-6dd4-4532-9b76-157c3d30f73b" />
+1) Access to EC2 service and mark `nautilus-ec2` instance, go to acctions>Security>Modify IAM role.
 
+<img width="1222" height="340" alt="image" src="https://github.com/user-attachments/assets/fef1cb2d-6dd4-4532-9b76-157c3d30f73b" />
 
+2) Create a new IAM role
+   - name: `nautilus-role`
+   - Use existing policy and select the policy created before 
 
 <img width="1235" height="676" alt="image" src="https://github.com/user-attachments/assets/38e1b8d5-ac72-43b6-bfac-5deb4ffec6d4" />
 
 
 ## Test the Access
 
+1) Create a new file on `nautilus-ec2` instance 
+
 ```
 vi s3test.txt
 ```
 
-bucket using following command:
+
+2) Upload the file to the bucket using following command:
 
 ```
 aws s3 cp <your-file> s3://nautilus-s3-821328497772/
