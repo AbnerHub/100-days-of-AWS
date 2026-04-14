@@ -55,7 +55,7 @@ docker tag de46d81fbd0f 541882316995.dkr.ecr.us-east-1.amazonaws.com/devops-ecr:
 
 **Push the image**
 ```bash
-docker push aws_account_id.dkr.ecr.region.amazonaws.com/my-repository:tag
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<my-repository>:<tag>
 ```
 Example:
 ```bash
