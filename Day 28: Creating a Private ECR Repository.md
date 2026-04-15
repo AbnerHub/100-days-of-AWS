@@ -38,7 +38,7 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 
 **Tag your image with the Amazon ECR**
 ```bash
-docker tag <image-id> <aws_account_id>.dkr.ecr.region.amazonaws.com/<my-repository-name>:<tag>
+docker tag <image-id> <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<my-repository-name>:<tag>
 ```
 to know your image-id, run:
 ```
