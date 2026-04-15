@@ -19,9 +19,15 @@ Create a private ECR repository named *devops-ecr*. There is a Dockerfile under 
 
 ## Build docker image with dockerfile 
 
-On your client, naviate to *pyapp* directory and build your image with: 
+Access to your directory where is located the Docker file:
 
-```bash
+```
+cd /root/pyapp
+```
+
+On your client build your image and give it a name "python-image", it could be whatever you want. 
+
+```
 docker build -t python-image .
 ```
 
