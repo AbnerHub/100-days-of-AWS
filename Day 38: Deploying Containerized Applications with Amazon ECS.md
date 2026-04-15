@@ -156,7 +156,7 @@ Create a service named `devops-service` on the `devops-cluster` to run a task.
 <img width="1798" height="505" alt="image" src="https://github.com/user-attachments/assets/4313b050-48f1-4576-acf0-0f4893fecd6e" />
 
 
-2) From ECS Dashboard, go to `Clusters >  devops-cluster > tasks` and copy the public-clip
+2) From ECS Dashboard, go to `Clusters >  devops-cluster > tasks` and copy the public-ip
 
 3) On a browser, paste the ip copied, and you´ll see `Welcom to KKE AWS Cloud Labs!` message
 
