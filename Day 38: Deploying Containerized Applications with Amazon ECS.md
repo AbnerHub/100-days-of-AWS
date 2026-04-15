@@ -142,15 +142,23 @@ Create a service named `devops-service` on the `devops-cluster` to run a task.
 
 <img width="1476" height="346" alt="image" src="https://github.com/user-attachments/assets/81bb20aa-9880-4872-8126-37cfa69a721a" />
 
-3. On the service details secction, select `devops-taskdefinition` and write the service name `devops-service` 
+3. On the service details secction, select `devops-taskdefinition` and write the service name `devops-service`
+
+4. On the environment panel, select **Fargate** as Launch type. 
 
 <img width="1048" height="752" alt="image" src="https://github.com/user-attachments/assets/b64f6379-e9c5-4492-93f8-ca39283db8d6" />
 
-4. On the environment panel, select **Fargate** as Launch type. 
+
+## Test the environment 
+
+1) On VPC service go to Security Groups and modify default security group, adding http and 0.0.0.0/0 source.
 
 <img width="1798" height="505" alt="image" src="https://github.com/user-attachments/assets/4313b050-48f1-4576-acf0-0f4893fecd6e" />
 
 
+2) From ECS Dashboard, go to `Clusters >  devops-cluster > tasks` and copy the public-clip
+
+3) On a browser, paste the ip copied, and you´ll see `Welcom to KKE AWS Cloud Labs!` message
 
 
 
