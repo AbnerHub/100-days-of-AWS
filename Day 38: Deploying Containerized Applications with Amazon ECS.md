@@ -11,7 +11,7 @@ The process involves building a Docker image from a given Dockerfile, pushing it
   - Use the Dockerfile located at `/root/pyapp` on the `aws-client` host.
   - Build a Docker image using this Dockerfile.
   - Tag the image with latest tag.
-  - Push the Docker image to the devops-ecr repository.
+  - Push the Docker image to the `devops-ecr` repository.
 
 **3.Create and Configure ECS cluster:**
 
@@ -19,10 +19,8 @@ The process involves building a Docker image from a given Dockerfile, pushing it
 
 **4.Create an ECS Task Definition:**
 
-
   - Define a task named `devops-taskdefinition` using the Docker image from the `devops-ecr` ECR repository.
   - Specify necessary CPU and memory resources.
-
 
 **5.Deploy the Application Using ECS Service:**
 
@@ -30,7 +28,7 @@ The process involves building a Docker image from a given Dockerfile, pushing it
   - Ensure the service runs at least one task.
 
 
-## 🚀 Crearing repo in AWS console
+## 🚀 1. Crearing repo in AWS console
 
 1. Open Amazon ECR
 2. Create Repository / Private Repository
@@ -42,7 +40,7 @@ The process involves building a Docker image from a given Dockerfile, pushing it
 
 <img width="882" height="620" alt="repo" src="https://github.com/user-attachments/assets/80952ced-102a-4724-967e-889db54b6e9b" />
 
-## Build docker image with dockerfile 
+## 2.Build and Push Docker Image:
 
 Access to your directory where is located the Docker file:
 
@@ -50,26 +48,26 @@ Access to your directory where is located the Docker file:
 cd /root/pyapp
 ```
 
-On your client build your image and give it a name "devops-image", it could be whatever you want. 
+On `aws-client`, build an image and give it a name "devops-image", it could be whatever you want. 
 
 ```
 docker build -t devops-image .
 ```
-<img width="722" height="100" alt="image" src="https://github.com/user-attachments/assets/5083a6a7-a95e-47f0-871d-a7dcfa48810a" />
 
-
-
-**Authenticate your Docker client to the Amazon ECR**
+**Authenticate your Docker client to AWS ECR**
 
 ```bash
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
 ```
+
 My authentication:
+
 ```bash
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 692377628692.dkr.ecr.us-east-1.amazonaws.com/devops-ecr
 ```
 
 **Tag your image with the Amazon ECR**
+
 ```bash
 docker tag <image-id> <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<my-repository-name>:<tag>
 ```
@@ -77,6 +75,8 @@ to know your image-id, run:
 ```
 docker images
 ```
+
+<img width="722" height="100" alt="image" src="https://github.com/user-attachments/assets/5083a6a7-a95e-47f0-871d-a7dcfa48810a" />
 
 my tag: 
 ```bash
@@ -95,29 +95,48 @@ Example:
 docker push 692377628692.dkr.ecr.us-east-1.amazonaws.com/devops-ecr:latest
 ```
 
-## 3.Create and Configure ECS cluster:
+## 3. Create and Configure ECS cluster:
 
-<img width="1059" height="311" alt="image" src="https://github.com/user-attachments/assets/81768f0f-8978-460d-ad4e-c81435243a91" />
+1) Access to AWS ECS servoce and click on clusters on the dashboard navigation panel.
 
-<img width="1095" height="358" alt="image" src="https://github.com/user-attachments/assets/6037a463-1b01-473c-9c4e-d9b675ec401e" />
+<img width="905" height="311" alt="image" src="https://github.com/user-attachments/assets/81768f0f-8978-460d-ad4e-c81435243a91" />
+
+2) Create a new cluster, naming it `devops-cluster` 
+
+<img width="905" height="358" alt="image" src="https://github.com/user-attachments/assets/6037a463-1b01-473c-9c4e-d9b675ec401e" />
 
 
-## 4.
+## 4.Create an ECS Task Definition:
+
+1) On the dasbboard navigation panel, click on task definition to create one.
 
 <img width="1064" height="311" alt="image" src="https://github.com/user-attachments/assets/e9a99a89-6cad-434f-bda0-458033b99821" />
 
 
+2) Click on create a new task definition and name it as `devops-taskdefinition`
+    
 <img width="1035" height="690" alt="image" src="https://github.com/user-attachments/assets/9e0b9c00-ccdc-432f-9ceb-4f8c1544f233" />
 
-<img width="1267" height="480" alt="image" src="https://github.com/user-attachments/assets/ed36ebad-939a-4599-9b7a-5eabaa56f4bb" />
+3) On infraestructure requirements secction:
+   - Launch type: Fargate
+   -  Operating Sistem: Linux/x86_64
+   -  CPU: 3
+   -  Memory: 3GB
+4) On Container
+   - Name: devops-ecs-1
+   - Image URI:Browse ECR images and select `devops-ecr`
+
+5) Leave the other options as default and click on create
+
+   
+   <img width="1267" height="480" alt="image" src="https://github.com/user-attachments/assets/ed36ebad-939a-4599-9b7a-5eabaa56f4bb" />
 
 
 
-## 5.
+## 5. Deploy the Application Using ECS Service
 
 <img width="1064" height="311" alt="image" src="https://github.com/user-attachments/assets/b2a72074-75da-4900-88e4-c29cc6791e77" />
 
-## 6.
 
 <img width="1476" height="346" alt="image" src="https://github.com/user-attachments/assets/81bb20aa-9880-4872-8126-37cfa69a721a" />
 
