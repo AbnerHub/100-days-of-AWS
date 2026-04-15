@@ -66,7 +66,7 @@ My authentication:
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 692377628692.dkr.ecr.us-east-1.amazonaws.com/devops-ecr
 ```
 
-**Tag your image with the Amazon ECR**
+**Tag your image**
 
 ```bash
 docker tag <image-id> <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<my-repository-name>:<tag>
@@ -114,34 +114,39 @@ docker push 692377628692.dkr.ecr.us-east-1.amazonaws.com/devops-ecr:latest
 
 
 2) Click on create a new task definition and name it as `devops-taskdefinition`
-    
-<img width="1035" height="690" alt="image" src="https://github.com/user-attachments/assets/9e0b9c00-ccdc-432f-9ceb-4f8c1544f233" />
 
 3) On infraestructure requirements secction:
    - Launch type: Fargate
    -  Operating Sistem: Linux/x86_64
    -  CPU: 3
    -  Memory: 3GB
-4) On Container
+    
+<img width="1035" height="690" alt="image" src="https://github.com/user-attachments/assets/9e0b9c00-ccdc-432f-9ceb-4f8c1544f233" />
+
+
+4) On Container-1 secction
+   
    - Name: devops-ecs-1
    - Image URI:Browse ECR images and select `devops-ecr`
-
-5) Leave the other options as default and click on create
-
    
    <img width="1267" height="480" alt="image" src="https://github.com/user-attachments/assets/ed36ebad-939a-4599-9b7a-5eabaa56f4bb" />
 
+5) Leave the other options as default and click on create.
 
 
 ## 5. Deploy the Application Using ECS Service
 
-<img width="1064" height="311" alt="image" src="https://github.com/user-attachments/assets/b2a72074-75da-4900-88e4-c29cc6791e77" />
-
+Create a service named `devops-service` on the `devops-cluster` to run a task.
+ 1. Go to Cluster on te ECS dashboard navigation
+ 2. On the `Service` tab, click on create 
 
 <img width="1476" height="346" alt="image" src="https://github.com/user-attachments/assets/81bb20aa-9880-4872-8126-37cfa69a721a" />
 
+3. On the service details secction, select `devops-taskdefinition` and write the service name `devops-service` 
+
 <img width="1048" height="752" alt="image" src="https://github.com/user-attachments/assets/b64f6379-e9c5-4492-93f8-ca39283db8d6" />
 
+4. On the environment panel, select **Fargate** as Launch type. 
 
 <img width="1798" height="505" alt="image" src="https://github.com/user-attachments/assets/4313b050-48f1-4576-acf0-0f4893fecd6e" />
 
