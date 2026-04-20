@@ -18,10 +18,19 @@ Make sure the EC2 instance `xfusion-ec2` running the Nginx server is accessible 
 
 ## 🚀  Verify VPC Configuration:
 
-1. Access to VPC service on you AWS console. In the  dashboard navigation panel select internet gateways
+Access to VPC service on you AWS console.
+1. In the  dashboard navigation panel select VPC´s
+2. Choose `xfusion-vpc`
+3. Select resource map
+     
+Here we  notice that there is not an internet gateway connected to our vpc so, there is not Internet access
 
 <img width="1498" height="596" alt="image" src="https://github.com/user-attachments/assets/04732378-407d-42d0-a14f-2ead8e6a8320" />
 
+In the services path into VPC service
+
+1. Go to Internet Gateways
+2. Select `xfusion-ig` an attach it to `xfusion-vpc`
 
 <img width="1431" height="286" alt="image" src="https://github.com/user-attachments/assets/f814d29d-228a-440c-94a3-d309a62c593d" />
 
