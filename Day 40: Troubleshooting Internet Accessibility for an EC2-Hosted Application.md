@@ -25,7 +25,9 @@ Access to VPC service on you AWS console.
      
 Here we  notice that there is not an internet gateway connected to our vpc so, there is not Internet access
 
+
 <img width="1498" height="596" alt="image" src="https://github.com/user-attachments/assets/04732378-407d-42d0-a14f-2ead8e6a8320" />
+
 
 In the services path into VPC service
 
